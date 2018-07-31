@@ -22,7 +22,7 @@ Sign in
 };
 
 
-drawlogin();
+window.onload = drawlogin();
 
 // Entrar a la Database
 firebase.auth().onAuthStateChanged(user => {
@@ -34,7 +34,6 @@ firebase.auth().onAuthStateChanged(user => {
       location.href = ('views/view1.html');
     }
   } else {
-
 
   }
 });

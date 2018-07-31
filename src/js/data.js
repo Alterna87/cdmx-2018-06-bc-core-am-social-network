@@ -62,7 +62,7 @@ loginFacebook: () => {
     let credential = error.credential;
     // Verify if is same user
     if (errorCode === 'auth/account-exists-with-different-credential') {
-        alert('Intenta con otro correo');
+        alert('Intenta con otra cuenta');
     }
   });
 

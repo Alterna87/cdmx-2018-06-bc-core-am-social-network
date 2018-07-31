@@ -60,14 +60,14 @@ h4 {
 #likes {
   height: 15px;
   width: 50%;
-  background-color: yellow;
+  background-color: #54bd5c;
   float: left;
 }
 
 #dislikes {
   height: 15px;
   width: 50%;
-  background-color: red;
+  background-color: #f34a41;
   float: right;
 }
 
@@ -80,10 +80,10 @@ h4 {
   background-color: #4caf50 !important ;
 }
 .red {
-  background-color: red !important ;
-
+  background-color: #f34a41 !important ;
 }
-#form-recipe, #form-places {
+#form-recipe,
+#form-places {
   display: none;
 }
 
@@ -93,6 +93,6 @@ h4 {
 
 .padding-buttons {
   margin-bottom: 10px !important;
-padding: 14px !important;
+  padding: 14px !important;
 }
 /* Ends Francis*/

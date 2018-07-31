@@ -35,7 +35,3 @@ describe('Post', () => {
     it('Debería hacer un filtro que solo te muestre los comentarios tipo "Lugar".', () => {});
   });
 });
-
-
-
-Contraer 

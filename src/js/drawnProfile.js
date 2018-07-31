@@ -130,16 +130,31 @@ const editAboutMe = () => {
   btnCancel.addEventListener('click', cancelNewAboutMe);
   btnEditPerfil.style.display = 'none';
 };
+
+// ******************************************************/
+// Aqui codear mir
 btnEditPerfil.addEventListener('click', editAboutMe);
 
-btnEditPerfil.addEventListener('click', editAboutMe);
-
+// Función del boton salvar el nuevo perfil
 const saveNewAboutMe = () => {
   let newDescription = document.getElementById('n-descripcion').value;
-  let userDescription = localStorage.setItem(
-    'keyD',
-    JSON.stringify(newDescription)
-  );
-  userDescriptionN = JSON.parse(localStorage.getItem('keyD'));
-  editDescription.innerHTML = `<p>${userDescriptionN}</p>`;
+  // Validando que no se admitan etiquetas html
+  for (let i = 0; i < newDescription.length; i++) {
+    let letterDescrip = newDescription[i].charCodeAt();
+    if (letterDescrip === 60 || letterDescrip === 62) {
+      swal('Ooops,no puedes usar los signos "<" ">"');
+      btnEditPerfil.style.display = 'block';
+      return perfilLogin(userDescriptionFb);
+    }
+  };
+  sendPerfilFirebase(databaseRef, newDescription);
+
+  btnEditPerfil.style.display = 'block';
 };
+
+const cancelNewAboutMe = () => {
+  perfilLogin(userDescriptionFb);
+  btnEditPerfil.style.display = 'block';
+};
+// ******************************************************/
+// Aqui dejo de codear mir

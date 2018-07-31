@@ -133,6 +133,8 @@ const editAboutMe = () => {
   btnEditPerfil.style.display = 'none';
 };
 
+// ******************************************************/
+// Aqui codear mir
 btnEditPerfil.addEventListener('click', editAboutMe);
 
 // Función del boton salvar el nuevo perfil

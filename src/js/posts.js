@@ -190,7 +190,7 @@ firebase.database().ref('user/posts').on('value', snapshot => {
                 </div>`;
       }
 
-    post.innerHTML += html;
+    post.innerHTML = html;
 
     if(post != ''){
       let elementsDelete = document.getElementsByClassName('btn-delete');
@@ -387,7 +387,7 @@ let formPlaces = document.getElementById('form-places');
 choosePlaces.addEventListener('click', e => {
   let formRecipe = document.getElementById('form-recipe');
   let formPlaces = document.getElementById('form-places');
-  formRecipe.style.display ='none';
+  formRecipe.style.display = 'none';
   formPlaces.style.display = 'block';
 });
 

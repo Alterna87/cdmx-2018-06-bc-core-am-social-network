@@ -6,6 +6,9 @@ $(document).ready(function() {
 
 // activation of side down panel display
 $(document).ready(function() {
+  // mir agrego las siguientes dos lineas
+  const navarForms = document.getElementById('panel');
+  navarForms.style.display = 'none';
   $('#flip').click(function() {
     $('#panel').slideToggle('slow');
   });

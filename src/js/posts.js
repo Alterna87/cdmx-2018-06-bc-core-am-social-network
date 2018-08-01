@@ -56,6 +56,7 @@ firebase.database().ref('user/posts').on('value', snapshot => {
         let name = element.name;
         let photo = element.photo;
         let type = element.type;
+        let images = element.images;
         let title = element.title.toUpperCase();
         let people = element.people;
         let ingredients = element.ingredients;
@@ -67,7 +68,7 @@ firebase.database().ref('user/posts').on('value', snapshot => {
         <a class='btn-floating right waves-effect waves-light red'>
         <i class='material-icons'>${typePost}</i>
         </a>
-        <img src='../images/pozoleblanco.jpg'>
+        <img src='${images}'>
         <span class='card-title'>
             <h4 class='white-text'>${title}</h4>
             <a class="btn-floating halfway-fab waves-effect waves-light gray">
@@ -217,50 +218,39 @@ const postsRecipe = () => {
   let people = document.getElementById('count');
   let ingredients = document.getElementById('get-ingredients');
   let steps = document.getElementById('textarea2');
-  let typePost = 'Lugar';
-  // Drawning posts
-  post.innerHTML = `<div class='col s12 m12 l12'>
-  <section class='card'>
-<section class='card-image'>
-<a class='btn-floating right waves-effect waves-light red'>
-<i class='material-icons'>${typePost}</i>
-</a>
-<img src='../images/pozoleblanco.jpg'>
-<span class='card-title'>
-  <h4 class='white-text'>${title.value}</h4>
-  <a class="btn-floating halfway-fab waves-effect waves-light gray">
-  <i class="material-icons grey">favorite</i>
-  </a>
-</span>
-</section>
-<section class='card-content col m12'>
-<ul class="collection">
-<li class='collection-item avatar'>
-<img src=${user.photoURL} class='circle'>
-<p>${user.displayName}</p></li></ul>
-<h4>Porción Para: </h4>
-<p>${people.value} Personas</p>
-<h4>Ingredientes</h4>
-<p>${ingredients.value}</p>
-<h4>Procedimiento</h4>
-<p>${steps.value}</p>
-</section>
-<section class='padding-buttons col s12'>
-<a class="waves-effect waves-light btn-small btn col s12 l4"><i class="material-icons left ">create</i>Editar</a><a class='waves-effect waves-light btn-small red btn-delete col s12 l4 offset-l2' data-message = '${user.key}'><i class="material-icons left">delete</i>Borrar</a>
-</section>
-</section>
-  </div>`;
-  firebase.database().ref('user/posts').push({
-    ui: user.uid,
-    name: user.displayName,
-    photo: user.photoURL,
-    type: 'Receta',
-    title: title.value,
-    people: people.value,
-    ingredients: ingredients.value,
-    steps: steps.value,
-    like: 0
+    let typePost = 'Receta';
+  // Post Images
+
+  let refImages = firebase.storage().ref();
+  let imageup = image.files[0];
+  let uploadImages = refImages.child('images/'+ imageup.name).put(imageup);
+  uploadImages.on('state_changed', snapshot => {
+
+
+  }, error =>{
+    alert('No se cargo debidamente la imagen');
+  },  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    uploadImages.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      firebase.database().ref('user/posts').push({
+        ui: user.uid,
+        name: user.displayName,
+        photo: user.photoURL,
+        images: downloadURL,
+        type: 'Receta',
+        title: title.value,
+        people: people.value,
+        ingredients: ingredients.value,
+        steps: steps.value,
+        like: 0
+      });
+    });
+
+
   });
+
+
 
   // modified by Francis
   title.value = '';
@@ -269,7 +259,7 @@ const postsRecipe = () => {
   steps.value = '';
   formRecipe.style.display = 'none';
   formPlaces.style.display = 'none';
-};
+} ;
 
 // Post formPlaces
 
@@ -390,23 +380,6 @@ choosePlaces.addEventListener('click', e => {
   formRecipe.style.display = 'none';
   formPlaces.style.display = 'block';
 });
-
-const uploadimages =()=>{
-let refImages = firebase.storage().ref();
-let imageup = image.files[0];
-let uploadImages = refImages.child('images/'+ imageup.name).put(imageup);
-uploadImages.on('state_changed', snapshot => {
-
-}, error =>{
-
-},  () => {
-let imageURL = uploadImages.snapshot.downloadURL;
-});
-}
-
-const createNode =(url)=> {
-
-}
 
 let ingredientSelected = document.getElementById('ingredients');
 ingredientSelected.addEventListener('change', e => {

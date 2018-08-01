@@ -30,8 +30,4 @@ describe('Post', () => {
   it('Debería dejar al usuario edita su entrada.', () => {});
   it('Debería dejar al usuario borrar su entrada.', () => {});
   it('Debería no dejar al usuario editar la entrada de alguien más.', () => {});
-  describe('Filtros de lugares y recetas en el muro.', () => {
-    it('Debería hacer un filtro que solo te muestre los comentarios tipo "Recetas".', () => {});
-    it('Debería hacer un filtro que solo te muestre los comentarios tipo "Lugar".', () => {});
-  });
 });

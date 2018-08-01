@@ -245,20 +245,19 @@ const postsRecipe = () => {
         steps: steps.value,
         like: 0
       });
-    });
-
-
-  });
-
-
-
-  // modified by Francis
+    // modified by Francis
   title.value = '';
   people.value = '';
   ingredients.value = '';
   steps.value = '';
   formRecipe.style.display = 'none';
   formPlaces.style.display = 'none';
+    });
+
+
+  });
+
+
 } ;
 
 // Post formPlaces

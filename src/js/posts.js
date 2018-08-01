@@ -370,14 +370,18 @@ let choosePlaces = document.getElementById('add-place');
 chooseRecipe.addEventListener('click', e => {
 let formRecipe = document.getElementById('form-recipe');
 let formPlaces = document.getElementById('form-places');
-  formRecipe.style.display ='block';
+  formRecipe.style.display = 'block';
   formPlaces.style.display = 'none';
+  document.getElementById('btneditrecipe').style.display = 'none';
+  document.getElementById('btnpost').style.display = 'block';
 });
 choosePlaces.addEventListener('click', e => {
   let formRecipe = document.getElementById('form-recipe');
   let formPlaces = document.getElementById('form-places');
   formRecipe.style.display = 'none';
   formPlaces.style.display = 'block';
+  document.getElementById('btnedit').style.display = 'none';
+  document.getElementById('btnplace').style.display = 'block';
 });
 
 let ingredientSelected = document.getElementById('ingredients');

@@ -1,20 +1,16 @@
 const drawlogin = () => {
   let login = document.getElementById('login');
   // Draw inputs in Index
+  // cambios de mir en este inner.html
   login.innerHTML = `
 <h5 id='titulos2'>
 Sign in
 </h5>
-<input class='validate col s10 m8 l6 offset-s1 offset-m2 offset-l3' type='text' placeholder='Email...' id='email'>
-<input class='validate col s10 m8 l6 offset-s1 offset-m2 offset-l3' type='password' placeholder='Password...' id='password'>
 <div class="row">
-<a id='sesion' class="waves-effect waves-light btn-large col s10 m8 l6 offset-s1 offset-m2 offset-l3">Iniciar Sesión</a>
+<a id='sesionGoogle' class="waves-effect red darken-4 btn-large col s10 m8 l7 offset-s1 offset-m2 offset-l2">Google</a>
 </div>
 <div class="row">
-<a id='sesionGoogle' class="waves-effect red darken-4 btn-large col s10 m8 l6 offset-s1 offset-m2 offset-l3">Google</a>
-</div>
-<div class="row">
-<a id='sesionFacebook' class="waves-effect indigo darken-3 btn-large col s10 m8 l6 offset-s1 offset-m2 offset-l3">
+<a id='sesionFacebook' class="waves-effect indigo darken-3 btn-large col s10 m8 l7 offset-s1 offset-m2 offset-l2">
     facebook
 </a>
 </div>
@@ -38,18 +34,18 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
-const getdata =()=> {
-const mail = document.getElementById('email');
-const password = document.getElementById('password');
-const nick = document.getElementById('nick');
+const getdata = ()=> {
+  const mail = document.getElementById('email');
+  const password = document.getElementById('password');
+  const nick = document.getElementById('nick');
 
-firebase.auth().signInWithEmailAndPassword(mail.value, password.value).catch(error=> {
+  firebase.auth().signInWithEmailAndPassword(mail.value, password.value).catch(error=> {
   // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  alert("Error "+ errorMessage);
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert('Error ' + errorMessage);
   // ...
-});
+  });
 
   firebase
     .auth()
@@ -58,19 +54,20 @@ firebase.auth().signInWithEmailAndPassword(mail.value, password.value).catch(err
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      alert("Error " + errorMessage);
+      alert('Error ' + errorMessage);
       // ...
     });
 };
 
 
-let sesion = document.getElementById("sesion");
-sesion.addEventListener("click",getdata);
+let sesion = document.getElementById('sesion');
+// comento esto mir
+// sesion.addEventListener("click",getdata);
 let google = document.getElementById('sesionGoogle');
 google.addEventListener('click', event => {
-network.loginGoogle();
-    });
+  network.loginGoogle();
+});
 let facebook = document.getElementById('sesionFacebook');
-  facebook.addEventListener('click', event => {
+facebook.addEventListener('click', event => {
   network.loginFacebook();
-      });
+});

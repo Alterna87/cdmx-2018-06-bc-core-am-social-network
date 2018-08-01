@@ -214,7 +214,7 @@ const postsRecipe = () => {
   let formPlaces = document.getElementById('form-places');
   let user = firebase.auth().currentUser;
   let title = document.getElementById('input_text');
-  // let image = document.getElementById('fileImage');
+  let image = document.getElementById('fileImage');
   let people = document.getElementById('count');
   let ingredients = document.getElementById('get-ingredients');
   let steps = document.getElementById('textarea2');
